@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { PrismaClient } from "@prisma/client"; // Elimina la importación de Task
+import { PrismaClient, Task } from "@prisma/client"; // Import the Task type from Prisma
 import LogoutButton from "./LogoutButton";
 import DeleteButton from "./DeleteButton";
 import Link from "next/link";
@@ -26,7 +26,7 @@ export default async function Dashboard() {
       redirect("/login");
     }
 
-    const tasks = await prisma.task.findMany({
+    const tasks: Task[] = await prisma.task.findMany({
       where: { user: { email: session.user.email } },
     });
 
@@ -55,7 +55,7 @@ export default async function Dashboard() {
           <h2 className="text-3xl font-bold text-orange-600 mb-6">Your Tasks</h2>
           {tasks.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {tasks.map((t) => (
+              {tasks.map((t: Task) => (
                 <div
                   key={t.id}
                   className="bg-white shadow-md rounded-lg p-4 border-l-4 border-orange-500"
