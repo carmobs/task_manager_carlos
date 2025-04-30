@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [], // Agrega dominios permitidos si usas imágenes externas
+    domains: ["example.com", "anotherdomain.com"], // Agrega dominios permitidos si usas imágenes externas
   },
   env: {
     DATABASE_URL: process.env.DATABASE_URL,
