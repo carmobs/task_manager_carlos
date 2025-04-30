@@ -35,7 +35,6 @@ export const authOptions: NextAuthOptions = {
             return null;
           }
 
-          // Asegúrate de que el objeto retornado cumpla con la interfaz User
           return { id: String(user.id), email: user.email } as User;
         } catch (error) {
           console.error("Authorization error:", error);
