@@ -9,6 +9,9 @@ import { FiEdit, FiPlusCircle, FiClipboard } from "react-icons/fi";
 
 const prisma = new PrismaClient();
 
+// Fuerza la renderización dinámica
+export const dynamic = "force-dynamic";
+
 export default async function Dashboard() {
   try {
     const session = await getServerSession(authOptions);
