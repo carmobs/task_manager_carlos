@@ -133,6 +133,10 @@
   .bg-background {
     @apply bg-gray-100; /* Ajusta este valor según tus necesidades */
   }
+
+  .text-foreground {
+    @apply text-gray-900; /* Ajusta este valor según tus necesidades */
+  }
 }
 
 @tailwind base;
