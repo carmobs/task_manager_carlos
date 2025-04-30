@@ -1,11 +1,11 @@
-import NextAuth, { AuthOptions, User } from "next-auth";
+import NextAuth, { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from "@prisma/client";
 import { compare } from "bcryptjs";
 
 const prisma = new PrismaClient();
 
-export const authOptions: AuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -15,8 +15,9 @@ export const authOptions: AuthOptions = {
       },
       async authorize(credentials): Promise<User | null> {
         try {
-          if (!credentials?.email || !credentials?.password) {
-            throw new Error("Email and password are required");
+          if (!credentials) {
+            console.error("No credentials provided.");
+            return null;
           }
 
           const user = await prisma.user.findUnique({
@@ -24,19 +25,20 @@ export const authOptions: AuthOptions = {
           });
 
           if (!user) {
-            throw new Error("No user found with this email");
+            console.error("No user found with this email.");
+            return null;
           }
 
           const isValid = await compare(credentials.password, user.password);
-
           if (!isValid) {
-            throw new Error("Invalid password");
+            console.error("Invalid password.");
+            return null;
           }
 
-          // Retornar un objeto que cumpla con la interfaz User
-          return { id: String(user.id), email: user.email };
+          // Asegúrate de que el objeto retornado cumpla con la interfaz User
+          return { id: String(user.id), email: user.email } as User;
         } catch (error) {
-          console.error("Error in authorize function:", error);
+          console.error("Authorization error:", error);
           return null;
         }
       },
