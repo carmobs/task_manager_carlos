@@ -26,8 +26,7 @@ export default async function Dashboard() {
       redirect("/login");
     }
 
-    // Define el tipo explícito para las tareas
-    const tasks: { id: number; title: string }[] = await prisma.task.findMany({
+    const tasks = await prisma.task.findMany({
       where: { user: { email: session.user.email } },
     });
 
@@ -56,7 +55,7 @@ export default async function Dashboard() {
           <h2 className="text-3xl font-bold text-orange-600 mb-6">Your Tasks</h2>
           {tasks.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {tasks.map((t: { id: number; title: string }) => (
+              {tasks.map((t) => (
                 <div
                   key={t.id}
                   className="bg-white shadow-md rounded-lg p-4 border-l-4 border-orange-500"
