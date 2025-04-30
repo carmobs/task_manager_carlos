@@ -3,7 +3,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from "@prisma/client";
 import { compare } from "bcryptjs";
 
-const prisma = new PrismaClient();
+// Singleton pattern for Prisma
+const prisma = global.prisma || new PrismaClient();
+if (process.env.NODE_ENV === "development") global.prisma = prisma;
 
 export const authOptions: NextAuthOptions = {
   providers: [
