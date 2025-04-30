@@ -121,6 +121,12 @@
   }
 }
 
+@layer utilities {
+  .border-border {
+    @apply border-gray-300; /* Puedes ajustar este valor según tus necesidades */
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
