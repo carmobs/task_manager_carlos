@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client";
 import LogoutButton from "./LogoutButton";
 import DeleteButton from "./DeleteButton";
 import Link from "next/link";
-import { FiEdit, FiTrash2, FiPlusCircle, FiClipboard } from "react-icons/fi";
+import { FiEdit, FiPlusCircle, FiClipboard } from "react-icons/fi";
 
 const prisma = new PrismaClient();
 

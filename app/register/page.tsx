@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -45,12 +46,12 @@ export default function Register() {
         >
           Register
         </button>
-        <a
+        <Link
           href="/"
           className="block text-center text-gray-500 mt-4 hover:underline"
         >
           Back to Home
-        </a>
+        </Link>
       </form>
     </div>
   );

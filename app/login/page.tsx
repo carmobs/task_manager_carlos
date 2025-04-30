@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -50,12 +51,12 @@ export default function Login() {
         >
           Login
         </button>
-        <a
+        <Link
           href="/"
           className="block text-center text-gray-500 mt-4 hover:underline"
         >
           Back to Home
-        </a>
+        </Link>
       </form>
     </div>
   );
