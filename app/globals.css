@@ -120,3 +120,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Puedes agregar estilos globales personalizados aquí */
